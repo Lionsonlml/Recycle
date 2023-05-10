@@ -1,5 +1,5 @@
-﻿    namespace RecycleDevices.Models
-{
+﻿namespace RecycleDevices.Models
+{ 
     public class Package
     {
         public int Id { get; set; }

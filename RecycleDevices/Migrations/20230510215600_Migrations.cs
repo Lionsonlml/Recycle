@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RecycleDevices.Migrations
 {
     /// <inheritdoc />
-    public partial class mig : Migration
+    public partial class Migrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,6 +32,26 @@ namespace RecycleDevices.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Apointment", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Client",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    lastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    cc = table.Column<int>(type: "int", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    roll = table.Column<int>(type: "int", nullable: false),
+                    points = table.Column<float>(type: "real", nullable: false),
+                    phoneNumber = table.Column<int>(type: "int", nullable: false),
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,6 +84,32 @@ namespace RecycleDevices.Migrations
                 {
                     table.PrimaryKey("PK_Product", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Tokens",
+                columns: table => new
+                {
+                    id_token = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id_user = table.Column<int>(type: "int", nullable: false),
+                    finicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ffin = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tokens", x => x.id_token);
+                    table.ForeignKey(
+                        name: "FK_Tokens_Client_id_user",
+                        column: x => x.id_user,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tokens_id_user",
+                table: "Tokens",
+                column: "id_user");
         }
 
         /// <inheritdoc />
@@ -77,6 +123,12 @@ namespace RecycleDevices.Migrations
 
             migrationBuilder.DropTable(
                 name: "Product");
+
+            migrationBuilder.DropTable(
+                name: "Tokens");
+
+            migrationBuilder.DropTable(
+                name: "Client");
         }
     }
 }
