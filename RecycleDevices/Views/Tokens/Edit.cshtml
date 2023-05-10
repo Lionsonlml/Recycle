@@ -1,0 +1,44 @@
+﻿@model RecycleDevices.Models.Token
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Token</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_token" />
+            <div class="form-group">
+                <label asp-for="id_user" class="control-label"></label>
+                <select asp-for="id_user" class="form-control" asp-items="ViewBag.id_user"></select>
+                <span asp-validation-for="id_user" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="finicio" class="control-label"></label>
+                <input asp-for="finicio" class="form-control" />
+                <span asp-validation-for="finicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ffin" class="control-label"></label>
+                <input asp-for="ffin" class="form-control" />
+                <span asp-validation-for="ffin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
