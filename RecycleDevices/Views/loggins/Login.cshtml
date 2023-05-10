@@ -1,0 +1,40 @@
+﻿@model RecycleDevices.Models.loggin
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="imail" class="control-label"></label>
+                <input asp-for="imail" class="form-control" />
+                <span asp-validation-for="imail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ingresar" class="btn btn-primary" />
+            </div>
+            
+        </form>
+        <div>
+            <a asp-action="Recover">Olvidé mi contraseña</a>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

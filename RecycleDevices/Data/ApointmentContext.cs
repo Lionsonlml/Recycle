@@ -1,5 +1,6 @@
 ﻿using RecycleDevices.Models;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Common;
 
 namespace RecycleDevices.Data
 {
@@ -10,7 +11,11 @@ namespace RecycleDevices.Data
         public DbSet<Apointment> Apointment { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Package> Package { get; set; }
-        public DbSet<User> User { get; set; }
+        //public DbSet<User> User { get; set; }
+        public DbSet<User> Client { get; set; }
+        // public DbSet<Roll> rolls { get; set; }
+        public DbSet<Models.Token> Tokens { get; set; }
+        //   public DbSet<loggin> loggins { get; set; }
 
         public object Apointments { get; internal set; }
 
