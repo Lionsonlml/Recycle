@@ -1,0 +1,108 @@
+﻿@model IEnumerable<RecycleDevices.Models.Apointment>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutCita.cshtml";
+}
+
+var completedAppointments = Model.Where(m => m.State == "completado");
+
+
+<h1>Index</h1>
+
+<p>
+    <a class ="btn btn-outline-dark" asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped table-borderless table-sm table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Municipality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCategoryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Points)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Municipality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductCategoryID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Points)
+                </td>
+                <td>
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                  @* <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+// Mostramos los registros en la nueva tabla
+<table>
+    <thead>
+        <tr>
+            <th>
+                Municipality
+            </th>
+            <!-- Más encabezados de columnas -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in completedAppointments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Municipality)
+                </td>
+                <!-- Más campos de la fila -->
+            </tr>
+        }
+    </tbody>
+</table>
