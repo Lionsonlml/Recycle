@@ -1,0 +1,14 @@
+﻿p {
+    text-align: justify; /* justificar el texto */
+    text-justify: inter-word; /* justificar usando espacios entre palabras */
+    width: 100%; /* ancho del párrafo al 100% del contenedor */
+    margin: 0; /* eliminar los márgenes por defecto */
+}
+.container-tip {
+    background-color: #006934;
+    color:white;
+}
+.card-header {
+    background-color: #006934;
+    color:white;
+}

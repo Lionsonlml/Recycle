@@ -12,8 +12,8 @@ using RecycleDevices.Data;
 namespace RecycleDevices.Migrations
 {
     [DbContext(typeof(ApointmentContext))]
-    [Migration("20230506232151_mig1")]
-    partial class mig1
+    [Migration("20230510130741_mig")]
+    partial class mig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,16 +51,22 @@ namespace RecycleDevices.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Municipality")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductCategoryID")
                         .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
@@ -68,6 +74,32 @@ namespace RecycleDevices.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Apointment");
+                });
+
+            modelBuilder.Entity("RecycleDevices.Models.Package", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Package");
                 });
 
             modelBuilder.Entity("RecycleDevices.Models.Product", b =>
