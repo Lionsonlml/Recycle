@@ -59,8 +59,10 @@ namespace RecycleDevices.Controllers
                             break;
                     case 2:
 
-                        //vista domiciliario
-                        return View();
+                            id = us.Id;
+                            TempData["Id"] = id;
+                            return RedirectToAction("AsignedApointment", "Apointments");
+                            break; ;
                         break;
 
 
