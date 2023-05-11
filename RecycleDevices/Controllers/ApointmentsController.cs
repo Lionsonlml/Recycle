@@ -102,10 +102,15 @@ namespace RecycleDevices.Controllers
         // GET: Apointments/Create
         public IActionResult Create()
         {
+
             Apointment ap = new Apointment();   
             int id = (int)TempData["Id"];
             ap.UserID = id;
             ViewBag.Categorias = new SelectList(_context.Product, "Id", "Name");
+            if (id == null || _context.Apointment == null)
+            {
+                return View(ap);
+            }
 
             return View(ap);
         }
