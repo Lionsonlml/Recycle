@@ -1,6 +1,7 @@
 ﻿using RecycleDevices.Models;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
+using CRUDDomiciliarioVehiculo.Models;
 
 namespace RecycleDevices.Data
 {
@@ -18,6 +19,9 @@ namespace RecycleDevices.Data
         //   public DbSet<loggin> loggins { get; set; }
 
         public object Apointments { get; internal set; }
+
+        public DbSet<Domiciliario> Domiciliarios { get; set; }
+        public DbSet<Vehiculo> Vehiculos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
