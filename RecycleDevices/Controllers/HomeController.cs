@@ -2,7 +2,7 @@
 using RecycleDevices.Models;
 using System.Diagnostics;
 
-namespace RecycleDevices.Controllers
+namespace Proyect.Controllers
 {
     public class HomeController : Controller
     {
@@ -22,11 +22,14 @@ namespace RecycleDevices.Controllers
         {
             return View();
         }
-        public IActionResult Apointments()
+        public IActionResult TipsPrevention()
         {
             return View();
         }
-
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

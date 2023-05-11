@@ -1,0 +1,26 @@
+﻿@model RecycleDevices.Models.Apointment
+
+
+@{
+    ViewData["Title"] = "ConsultPoints";
+}
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutCita.cshtml";
+}
+
+
+
+<h1>Saldo en Puntos</h1>
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.Points)
+</dt>
+
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.Points)
+</dd>
+
+<br>
+

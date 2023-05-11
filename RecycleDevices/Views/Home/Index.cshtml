@@ -1,9 +1,155 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
+<body>
+<br />
+<br />
+<div class="container">
+    <div class="row ">
+        <div class="col-md-6 ">
+            <img src="@Url.Content("~/images/TrashRAEE.jpeg")" class="img-fluid float-start me-3" alt="Imagen">
+        </div>
+        <div class="col-md-6 text-justify">
+            <h1>RESIDUOS ELECTRICOS Y ELECTRONICOS</h1>
+            <h3>RAEE</h3>
+            <p class="text-justify float-end ">
+                Los Residuos de Aparatos Eléctricos y Electrónicos (RAEE) son aquellos dispositivos electrónicos o eléctricos que han llegado al final de su vida útil. 
+                Estos pueden incluir teléfonos móviles, ordenadores, televisores, electrodomésticos, entre otros. 
+                Debido al rápido avance tecnológico y la obsolescencia programada, la cantidad de RAEE generados a nivel mundial ha aumentado significativamente en los últimos años.
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+            <br />
+                La gestión adecuada de los RAEE es fundamental para evitar su impacto negativo en el medio ambiente y la salud humana.
+                Los componentes y materiales de los RAEE pueden contener sustancias peligrosas como plomo, mercurio, cadmio y bromo, 
+                que pueden ser liberadas al medio ambiente si no se manejan adecuadamente. Además, muchos de estos componentes y materiales
+                son valiosos y pueden ser recuperados para su reutilización, lo que reduce la necesidad de extraer y procesar materias primas.
+                Por lo tanto, la gestión adecuada de los RAEE no solo es importante para minimizar su impacto negativo en el medio ambiente, sino que también puede ser beneficiosa desde
+                una perspectiva económica y de recursos naturales.
+            </p>
+        </div>
+    </div>
 </div>
- 
+
+<br />
+<div class="container container-cifras">
+    <br />
+    <h2 class="cifra-h2">RAEE en Colombia</h2>
+   <br />    
+    <div class="row d-flex align-items-center justify-content-between">
+        <div class="col-sm-3 text-center cifra-col">
+            <h2>325.000</h2>
+            <h4>Toneladas de RAEE</h4>
+            <p class="p p-cifras">Se generan por año </p>
+        </div>
+            <div class="col-sm-3  text-center cifra-col">
+            <h2>890.000</h2>
+            <h4>Toneladas Aprox</h4>
+            <p class="p p-cifras">Se producen en un dia</p>
+        </div>
+        <div class="col-sm-3 text-center cifra-col">
+            <h2>90%</h2>
+            <h4>Residuos producidos</h4>
+            <p class ="p p-cifras">NO son tratados como corresponde</p>
+        </div>
+        <div class="col-sm-3  text-center ">
+            <h2>70%</h2>
+            <h4>Residuos producidos</h4>
+            <p class="p p-cifras">Son electrodomesticos y celulares</p>
+        </div>
+    </div>
+    <br />
+</div>
+<br />
+<p>En Recycle Devices queremos que hagas parte del cambio es por esta razón que si deseas contribuir entregnado tus residuos electricos
+    y electronicos , contamos con una tabla de categorizacion la cual te proporciona información de como se clasifican los RAEE y 
+    cuantos puntos redimibles puedes obtner por entregar 1 elemento de la categoria correspondiente, echale un vistazo !
+</p>
+<br />
+<br/>
+    <div class="container">
+        <h2 class="tabla-titulo">Tabla de categorías y puntajes</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="head-tabla">Categoría</th>
+                        <th class="head-tabla">Puntaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td title="Equipos de informática y telecomunicaciones">Equipos de informática y telecomunicaciones:
+                            <p>Computadoras de escritorio, laptops, tabletas, teléfonos inteligentes, Routers, modems, impresoras, etc.</p>
+                        </td>
+                        <td class="td-tabla">50</td>
+                    </tr>
+                    <tr>
+                       <td title="Grandes electrodomesticos">
+                            Grandes electrodomésticos:
+                            <p>Refrigeradores, congeladores, lavadoras, secadoras, estufas, hornos, aires acondicionados, etc</p>
+                        </td>
+                        <td class="td-tabla">45</td>
+                    </tr>
+                    <tr>
+                        <td title="Herramientas electricas y electronicas">
+                            Herramientas eléctricas y electrónicas:
+                            <p>Taladros, sierras eléctricas, martillos eléctricos, lijadoras, cortadoras de césped eléctricas, etc.</p>
+                        </td>
+                        <td class="td-tabla">40</td>
+                    </tr>
+                    <tr>
+                        <td title="Equipos electronicos de consumo">
+                            Equipos electrónicos de consumo
+                            <p>Televisores, reproductores de DVD y Blu-ray, sistemas de sonido, cámaras digitales, relojes inteligentes, etc.</p>
+                        </td>
+                        <td class="td-tabla">30</td>
+                    </tr>
+                    <tr>
+                        <td title="Pequeños electrodomesticos">
+                            Pequeños electrodomésticos
+                            <p>licuadoras, cafeteras, tostadoras, batidoras, planchas, aspiradoras, etc.</p>
+                        </td>
+                        <td class="td-tabla">25</td>
+                    </tr>
+                    <tr>
+                        <td title="Juguetes, equipos deportivos y de ocio">
+                            Juguetes, equipos deportivos y de ocio
+                            <p>Consolas de videojuegos, drones, patinetes eléctricos.
+                        <td class="td-tabla">20</td>
+                    </tr>
+                    <tr>
+                        <td title="Dispositivos médicos">Dispositivos médicos</td>
+                        <td class="td-tabla">15</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-left">
+                    "Es importante que todos nos involucremos en una correcta gestión de los Residuos de Aparatos Eléctricos 
+                    y Electrónicos (RAEE), ya que estos desechos contienen componentes peligrosos que pueden afectar tanto 
+                    nuestra salud como el medio ambiente. El reciclaje de estos aparatos ayuda a reducir la cantidad de residuos
+                    peligrosos que se acumulan en los vertederos, disminuyendo la contaminación y protegiendo nuestra salud.
+                    Además, muchos de los componentes de estos aparatos pueden ser reutilizados en la fabricación de nuevos productos,
+                    lo que reduce la necesidad de extraer nuevos recursos y contribuye a una economía circular más sostenible.
+                    Así que, la próxima vez que tengas que desechar un aparato eléctrico o electrónico, recuerda la importancia de
+                    su correcta gestión y ¡contribuye a un mundo más sano y sostenible!
+                </p>
+                <br/>
+                <p>
+                   En Reycle Devices queremos ayudarte a ser parte del cambio!,Estamos aqui para que contribuyamos juntos como equipo al
+                   medio ambiente.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <img src="@Url.Content("~/images/MockupBienvenida.jpg")" class="img-fluid" alt="Descripción de la imagen">
+            </div>
+            <br/>
+            <a href="ruta_de_la_otra_vista" class="btn btn-succ">+ Unéte a Recycle Devices</a>
+        </div>
+        <br/>
+    </div>
+</body>

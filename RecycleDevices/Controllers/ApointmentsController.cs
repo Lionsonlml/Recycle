@@ -24,7 +24,38 @@ namespace RecycleDevices.Controllers
         {
             return RedirectToAction("Create", "Packages");
         }
+      
+        public async Task<IActionResult> AsignedApointment()
+        {
+            return _context.Apointment != null ?
+                        View(await _context.Apointment.ToListAsync()) :
+                        Problem("Entity set 'ApointmentContext.Apointment'  is null.");
+        }
 
+     
+        public async Task<IActionResult> UpdateState(int id)
+        {
+            var AsignedApointment = _context.Apointment.Where(p => p.Id == id).SingleOrDefault();
+            if (AsignedApointment != null)
+            {
+                AsignedApointment.State = "Completa"; // Change State value to 2
+                _context.SaveChanges();
+            }
+
+            if (id == null || _context.Apointment == null)
+            {
+                return NotFound();
+            }
+
+            var apointment = await _context.Apointment
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (apointment == null)
+            {
+                return NotFound();
+            }
+            // Return the view with the view model
+            return View(apointment);
+        }
         // GET: Apointments
         public async Task<IActionResult> Index()
         {
@@ -50,13 +81,33 @@ namespace RecycleDevices.Controllers
 
             return View(apointment);
         }
+        public async Task<IActionResult> ConsultPointsAsync(int? id)
+        {
+
+            if (id == null || _context.Apointment == null)
+            {
+                return NotFound();
+            }
+
+            var apointment = await _context.Apointment
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (apointment == null)
+            {
+                return NotFound();
+            }
+            // Return the view with the view model
+            return View(apointment);
+        }
 
         // GET: Apointments/Create
         public IActionResult Create()
         {
+            Apointment ap = new Apointment();   
+            int id = (int)TempData["Id"];
+            ap.UserID = id;
             ViewBag.Categorias = new SelectList(_context.Product, "Id", "Name");
 
-            return View();
+            return View(ap);
         }
 
         // POST: Apointments/Create
@@ -64,10 +115,15 @@ namespace RecycleDevices.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserID,DeliveryID,Country,Departament,Municipality,Address,Date,Description,ProductCategoryID")] Apointment apointment)
+        public async Task<IActionResult> Create([Bind("Id,UserID,DeliveryID,Country,Departament,Municipality,Address,Date,PackageId,ProductCategoryID,State,Points")] Apointment apointment)
         {
+
+            //
+            //var user = await _context.Client.FindAsync(id);
+           
             if (ModelState.IsValid)
             {
+               
                 _context.Add(apointment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -96,7 +152,7 @@ namespace RecycleDevices.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserID,DeliveryID,Country,Departament,Municipality,Address,Date,Description,ProductCategoryID")] Apointment apointment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserID,DeliveryID,Country,Departament,Municipality,Address,Date,PackageId,ProductCategoryID,State,Points")] Apointment apointment)
         {
             if (id != apointment.Id)
             {

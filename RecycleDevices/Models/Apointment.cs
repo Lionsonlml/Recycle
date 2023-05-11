@@ -15,5 +15,8 @@
         public string State { get; set; }
         public int Points { get; set; }
 
+
+        ////foreign key property
+        //public User user { get; set; } // navigation property
     }
 }

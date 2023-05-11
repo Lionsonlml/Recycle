@@ -1,0 +1,47 @@
+﻿h1{
+    text-align:justify-all;
+}
+h3 {
+    text-align:justify-all;
+}
+p {
+    text-align: justify; /* justificar el texto */
+    text-justify: inter-word; /* justificar usando espacios entre palabras */
+    width: 100%; /* ancho del párrafo al 100% del contenedor */
+    margin: 0; /* eliminar los márgenes por defecto */
+}
+.container-cifras {
+    background-color: #006934;
+    color: #ffffff;
+}
+.cifra h4 {
+    text-align:center;
+}
+.p-cifras{
+    text-align:center;
+}
+.cifra-col{
+    border-right:2px solid #b6ff00;
+}
+.cifra-h2{
+    text-align:center;
+}
+.tabla-titulo {
+    text-align: center;
+    color: #006934;
+}
+.head-tabla {
+    background-color: #006934;
+    text-align:center;
+    color:white;
+    
+}
+.td-tabla {
+    font-size:20px;
+    font-weight: bold;
+}
+.btn-succ {
+    background-color: #006934 !important;
+    color: white;
+    font-weight: bold;
+}
