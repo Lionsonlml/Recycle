@@ -1,0 +1,18 @@
+﻿@model RecycleDevices.Models.loggin
+
+@{
+    ViewData["Title"] = "ExeLimit";
+}
+<h4>
+    El timpo para el cambio de contraseña ya caducó
+</h4>
+
+<div>
+    <a asp-action="Index">Página principal</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

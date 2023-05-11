@@ -1,0 +1,36 @@
+﻿@model RecycleDevices.Models.Token
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Token</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.finicio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.finicio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ffin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ffin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.USUARIO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.USUARIO.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id_token">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

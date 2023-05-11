@@ -122,6 +122,78 @@ namespace RecycleDevices.Migrations
 
                     b.ToTable("Product");
                 });
+
+            modelBuilder.Entity("RecycleDevices.Models.Token", b =>
+                {
+                    b.Property<int>("id_token")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_token"));
+
+                    b.Property<DateTime>("ffin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("finicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("id_user")
+                        .HasColumnType("int");
+
+                    b.HasKey("id_token");
+
+                    b.HasIndex("id_user");
+
+                    b.ToTable("Tokens");
+                });
+
+            modelBuilder.Entity("RecycleDevices.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("cc")
+                        .HasColumnType("int");
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("phoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<float>("points")
+                        .HasColumnType("real");
+
+                    b.Property<int>("roll")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Client");
+                });
+
+            modelBuilder.Entity("RecycleDevices.Models.Token", b =>
+                {
+                    b.HasOne("RecycleDevices.Models.User", "USUARIO")
+                        .WithMany()
+                        .HasForeignKey("id_user")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("USUARIO");
+                });
 #pragma warning restore 612, 618
         }
     }

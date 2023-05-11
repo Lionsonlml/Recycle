@@ -1,0 +1,54 @@
+﻿@model RecycleDevices.Models.User
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/Create.css" />
+</head>
+
+<div class="union">
+    <div class="div_image">
+        <div class="image">
+            <img src="https://i.pinimg.com/736x/a9/cf/ca/a9cfca52b8c6a2f9388c78f2439019a7.jpg" />
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" id="name_roll">
+
+                    <input asp-for="name" class="form-control" placeholder="Nombre" />
+                    <span asp-validation-for="name" class="text-danger"></span>
+                    <input asp-for="lastName" class="form-control" placeholder="Apellidos" />
+                    <span asp-validation-for="lastName" class="text-danger"></span>
+
+                </div>
+                <div class="form-group" id="cc_password">
+
+                    <input asp-for="cc" class="form-control" placeholder="Num. Identificaion" />
+                    <input asp-for="password" class="form-control" type="password" placeholder="Contraseña" />
+                    <span asp-validation-for="password" class="text-danger"></span>
+                    <span asp-validation-for="cc" class="text-danger"></span>
+                </div>
+                <div class="form-group" id="email_confirm">
+                    <input asp-for="email" class="form-control" placeholder="Email" />
+                    <input asp-for="phoneNumber" class="form-control" placeholder="Número celular" />
+                    <span asp-validation-for="phoneNumber" class="text-danger"></span>
+                    <span asp-validation-for="email" class="text-danger"></span>
+                   
+                </div>
+                <div class="form-group" id="botton_add">
+                    <input type="submit" value="+Unete a Recycle Devices" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
