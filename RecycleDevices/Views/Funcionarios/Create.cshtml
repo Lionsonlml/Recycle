@@ -1,0 +1,89 @@
+﻿@model RecycleDevices.Models.Funcionario
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/CRUDFun.cshtml";
+}
+
+<h6>Informacion Personal</h6>
+
+<h4>Funcionario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdFun" class="control-label"></label>
+                <input asp-for="IdFun" class="form-control" />
+                <span asp-validation-for="IdFun" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeId" class="control-label">Type</label>
+                <select asp-for="TypeId" class="form-control">
+                    <option value="">-- Select Type --</option>
+                    <option value="CC">Cédula</option>
+                    <option value="TI">Tarjeta de Identidad</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                </select>
+                <span asp-validation-for="TypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" type="password" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NivelEstudio" class="control-label">Nivel de Estudio</label>
+                <select asp-for="NivelEstudio" class="form-control">
+                    <option value="">--Selecciona un nivel--</option>
+                    <option value="Primaria">Primaria</option>
+                    <option value="Secundaria">Secundaria</option>
+                    <option value="Bachillerato">Bachillerato</option>
+                    <option value="Licenciatura">Licenciatura</option>
+                    <option value="Maestria">Maestría</option>
+                    <option value="Doctorado">Doctorado</option>
+                </select>
+                <span asp-validation-for="NivelEstudio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cargo" class="control-label">Cargo</label>
+                <select asp-for="Cargo" class="form-control">
+                    <option value="">--Selecciona un cargo--</option>
+                    <option value="Desarrollador">Desarrollador</option>
+                    <option value="Diseñador">Diseñador</option>
+                    <option value="Gerente de proyecto">Gerente de proyecto</option>
+                    <option value="Analista de negocios">Analista de negocios</option>
+                    <option value="Arquitecto de software">Arquitecto de software</option>
+                </select>
+                <span asp-validation-for="Cargo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -2,95 +2,95 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RecycleDevices.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RecycleDevices.Models;
 using RecycleDevices.Data;
 
 namespace RecycleDevices.Controllers
 {
-    public class DomiciliariosController : Controller
+    public class FuncionariosController : Controller
     {
         private readonly ApointmentContext _context;
 
-        public DomiciliariosController(ApointmentContext context)
+        public FuncionariosController(ApointmentContext context)
         {
             _context = context;
         }
 
-        // GET: Domiciliarios
+        // GET: Funcionarios
         public async Task<IActionResult> Index()
         {
-              return _context.Domiciliarios != null ? 
-                          View(await _context.Domiciliarios.ToListAsync()) :
-                          Problem("Entity set 'CRUDDomVehiculo_Context.Domiciliarios'  is null.");
+              return _context.Funcionarios != null ? 
+                          View(await _context.Funcionarios.ToListAsync()) :
+                          Problem("Entity set 'CRUDFun_Context.Funcionarios'  is null.");
         }
 
-        // GET: Domiciliarios/Details/5
+        // GET: Funcionarios/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.Domiciliarios == null)
+            if (id == null || _context.Funcionarios == null)
             {
                 return NotFound();
             }
 
-            var domiciliario = await _context.Domiciliarios
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (domiciliario == null)
+            var funcionario = await _context.Funcionarios
+                .FirstOrDefaultAsync(m => m.IdFun == id);
+            if (funcionario == null)
             {
                 return NotFound();
             }
 
-            return View(domiciliario);
+            return View(funcionario);
         }
 
-        // GET: Domiciliarios/Create
+        // GET: Funcionarios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Domiciliarios/Create
+        // POST: Funcionarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdDom,TypeId,Name,LastName,Email,password,Day,HourInitial,HourEnd,Rol")] Domiciliario domiciliario)
+        public async Task<IActionResult> Create([Bind("IdFun,Name,TypeId,LastName,email,password,NivelEstudio,Cargo")] Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(domiciliario);
+                _context.Add(funcionario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(domiciliario);
+            return View(funcionario);
         }
 
-        // GET: Domiciliarios/Edit/5
+        // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.Domiciliarios == null)
+            if (id == null || _context.Funcionarios == null)
             {
                 return NotFound();
             }
 
-            var domiciliario = await _context.Domiciliarios.FindAsync(id);
-            if (domiciliario == null)
+            var funcionario = await _context.Funcionarios.FindAsync(id);
+            if (funcionario == null)
             {
                 return NotFound();
             }
-            return View(domiciliario);
+            return View(funcionario);
         }
 
-        // POST: Domiciliarios/Edit/5
+        // POST: Funcionarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,IdDom,TypeId,Name,LastName,Email,password,Day,HourInitial,HourEnd,Rol")] Domiciliario domiciliario)
+        public async Task<IActionResult> Edit(string id, [Bind("IdFun,Name,TypeId,LastName,email,password,NivelEstudio,Cargo")] Funcionario funcionario)
         {
-            if (id != domiciliario.Id)
+            if (id != funcionario.IdFun)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace RecycleDevices.Controllers
             {
                 try
                 {
-                    _context.Update(domiciliario);
+                    _context.Update(funcionario);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DomiciliarioExists(domiciliario.Id))
+                    if (!FuncionarioExists(funcionario.IdFun))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace RecycleDevices.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(domiciliario);
+            return View(funcionario);
         }
 
-        // GET: Domiciliarios/Delete/5
+        // GET: Funcionarios/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null || _context.Domiciliarios == null)
+            if (id == null || _context.Funcionarios == null)
             {
                 return NotFound();
             }
 
-            var domiciliario = await _context.Domiciliarios
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (domiciliario == null)
+            var funcionario = await _context.Funcionarios
+                .FirstOrDefaultAsync(m => m.IdFun == id);
+            if (funcionario == null)
             {
                 return NotFound();
             }
 
-            return View(domiciliario);
+            return View(funcionario);
         }
 
-        // POST: Domiciliarios/Delete/5
+        // POST: Funcionarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.Domiciliarios == null)
+            if (_context.Funcionarios == null)
             {
-                return Problem("Entity set 'CRUDDomVehiculo_Context.Domiciliarios'  is null.");
+                return Problem("Entity set 'CRUDFun_Context.Funcionarios'  is null.");
             }
-            var domiciliario = await _context.Domiciliarios.FindAsync(id);
-            if (domiciliario != null)
+            var funcionario = await _context.Funcionarios.FindAsync(id);
+            if (funcionario != null)
             {
-                _context.Domiciliarios.Remove(domiciliario);
+                _context.Funcionarios.Remove(funcionario);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DomiciliarioExists(string id)
+        private bool FuncionarioExists(string id)
         {
-          return (_context.Domiciliarios?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Funcionarios?.Any(e => e.IdFun == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,26 +1,29 @@
-﻿@model CRUDDomiciliarioVehiculo.Models.Vehiculo
+﻿@model RecycleDevices.Models.Vehiculo
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/CRUDDom.cshtml";
 }
 
-<h1>Create</h1>
-
 <h4>Vehiculo</h4>
-<hr />
+
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Placa" class="control-label"></label>
-                <input asp-for="Placa" class="form-control" />
-                <span asp-validation-for="Placa" class="text-danger"></span>
-            </div>
+            <h6>Informacion del propietario</h6>
             <div class="form-group">
                 <label asp-for="IDDomiciliario" class="control-label"></label>
                 <input asp-for="IDDomiciliario" class="form-control" />
                 <span asp-validation-for="IDDomiciliario" class="text-danger"></span>
+            </div>
+
+            <h6>Informacion del vehiculo</h6>
+            <div class="form-group">
+                <label asp-for="Placa" class="control-label"></label>
+                <input asp-for="Placa" class="form-control" />
+                <span asp-validation-for="Placa" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
@@ -33,14 +36,14 @@
                 <span asp-validation-for="Modelo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" style="background-color: green;border-block-color:forestgreen;">
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="bottom-50">Back to List</a>
 </div>
 
 @section Scripts {

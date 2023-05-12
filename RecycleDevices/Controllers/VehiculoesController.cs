@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CRUDDomiciliarioVehiculo.Models;
+using RecycleDevices.Models;
 using RecycleDevices.Data;
 
-namespace CRUDDomiciliarioVehiculo.Controllers
+namespace RecycleDevices.Controllers
 {
     public class VehiculoesController : Controller
     {
