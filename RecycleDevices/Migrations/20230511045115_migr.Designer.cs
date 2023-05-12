@@ -12,8 +12,8 @@ using RecycleDevices.Data;
 namespace RecycleDevices.Migrations
 {
     [DbContext(typeof(ApointmentContext))]
-    [Migration("20230510215600_Migrations")]
-    partial class Migrations
+    [Migration("20230511045115_migr")]
+    partial class migr
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
