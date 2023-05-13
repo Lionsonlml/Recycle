@@ -60,15 +60,23 @@ namespace RecycleDevices.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,name,lastName,cc,email,roll,points,phoneNumber,password")] User user)
         {
+            Loger log = new Loger();
             if (user is not null) { 
             user.roll = 1;
             user.password = User.Encriptar(user.password);
-
+          
             if (ModelState.IsValid)
             {
                 _context.Add(user);
+                
                 await _context.SaveChangesAsync();
-                return View("~/Views/Home/Index.cshtml");
+                    log.email = user.email;
+                    log.roll = user.roll;
+                    log.idTable = user.Id;
+                    log.password = user.password;
+                    _context.Add(log);
+                await _context.SaveChangesAsync();
+                    return View("~/Views/Home/Index.cshtml");
 
                 }
         }

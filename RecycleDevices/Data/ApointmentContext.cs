@@ -22,6 +22,7 @@ namespace RecycleDevices.Data
         public object Apointments { get; internal set; }
 
         public DbSet<Domiciliario> Domiciliarios { get; set; }
+        public DbSet<Loger> logers { get; set; }
         public DbSet<Vehiculo> Vehiculos { get; set; }
         public DbSet<Funcionario> Funcionarios { get; set; }
 

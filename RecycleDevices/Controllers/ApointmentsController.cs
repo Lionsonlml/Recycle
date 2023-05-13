@@ -1,8 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging.Signing;
 using RecycleDevices.Data;
 using RecycleDevices.Models;
+
 
 namespace RecycleDevices.Controllers
 {
@@ -24,15 +33,79 @@ namespace RecycleDevices.Controllers
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public IActionResult GenerateCode()
+        public async Task<IActionResult> GenerateCodeAsync(int pointRedeem)
         {
+
+            UsersController us = new UsersController(_context);
+
+            int id = (int)SessionManager.GetSessionValue("IdTable");
+            //var us = await _context.Client.SingleOrDefault(u=> u.Id == id); 
+            var user = await _context.Client
+               .FirstOrDefaultAsync(m => m.Id == id);
+            var User = _context.Client.Where(p => p.Id == id).SingleOrDefault();
+            var Point = (int)user.points;
+
+
+
+            if (User != null)
+            {
+                User.points = (User.points - pointRedeem) ;
+
+                _context.Update(User);
+
+                _context.SaveChanges();
+            }
+
+
+
 
             var Model = new ConsultPointViewModel()
             {
-                 CodeDiscount = GenerateRandomCode(8)
+
+            CodeDiscount = GenerateRandomCode(8)
         };
-           
+            Model.Point = Point;
             return View(Model);
+        }
+
+        public async Task<IActionResult> ConsultPointsAsync(int pointRedeem)
+        {
+
+            int id = (int)SessionManager.GetSessionValue("IdTable");
+            ////var us = await _context.Client.SingleOrDefault(u=> u.Id == id); 
+            var user = await _context.Client
+               .FirstOrDefaultAsync(m => m.Id == id);
+            //var User = _context.Client.Where(p => p.Id == id).SingleOrDefault();
+           var Point = (int)user.points;
+          
+
+           
+            //if (User!= null)
+            //{
+            //             User.points = (User.points - pointRedeem);
+
+            //    _context.Update(User);
+
+            //    _context.SaveChanges();
+            //}
+
+          
+            if (id == null || _context.Apointment == null)
+            {
+                return NotFound();
+            }
+
+            var model = new ConsultPointViewModel();
+            //.FirstOrDefaultAsync(m => m.Id == id);
+
+
+            model.Point = Point;
+            if (model == null)
+            {
+                return NotFound();
+            }
+            // Return the view with the view model
+            return View(model);
         }
 
         public ActionResult CrearOtraEntidad()
@@ -50,10 +123,18 @@ namespace RecycleDevices.Controllers
      
         public async Task<IActionResult> UpdateState(int id)
         {
+            int ID = (int)SessionManager.GetSessionValue("IdTable");
+         
+            var user = await _context.Client
+                .FirstOrDefaultAsync(m => m.Id == id);
             var AsignedApointment = _context.Apointment.Where(p => p.Id == id).SingleOrDefault();
+            var UserPointAdd = _context.Client.Where(p => p.Id == ID).SingleOrDefault();
+
             if (AsignedApointment != null)
             {
-                AsignedApointment.State = "Completa"; 
+                AsignedApointment.State = "Completa";
+                UserPointAdd.points = UserPointAdd.points + AsignedApointment.Points;
+
                 _context.SaveChanges();
             }
 
@@ -95,43 +176,25 @@ namespace RecycleDevices.Controllers
 
             return View(apointment);
         }
-        public async Task<IActionResult> ConsultPointsAsync()
-        {
-            int id = 1;
-            //int point = (int)TempData["points"];
-
-            if (id == null || _context.Apointment == null)
-            {
-                return NotFound();
-            }
-
-            var model = new ConsultPointViewModel();
-            //.FirstOrDefaultAsync(m => m.Id == id);
-
-
-            //model.Point = point;
-            if (model == null)
-            {
-                return NotFound();
-            }
-            // Return the view with the view model
-            return View(model);
-        }
+      
 
         // GET: Apointments/Create
         public IActionResult Create()
         {
 
-            var id = 1;
-            var points = 2;
-            //var id = (int)TempData["Id"];
-            //var points = (int)TempData["points"];
 
+            //   var id = (int)TempData["Id"];
+            //   var points = (int)TempData["points"];
+            int id = (int)SessionManager.GetSessionValue("IdTable");
+          
+            User us = new User();
+
+            var points = (int)us.points;
             Apointment ap = new Apointment();
 
                 ap.UserID = id;
                 ap.Points = points;
-                ViewBag.Categorias = new SelectList(_context.Product, "Id", "Name");
+                ViewBag.Categorias = new SelectList(_context.Product, "Points", "Name");
             
             if (id == null || _context.Apointment == null)
             {
@@ -151,10 +214,12 @@ namespace RecycleDevices.Controllers
 
             //
             //var user = await _context.Client.FindAsync(id);
-           
+            int id = (int)SessionManager.GetSessionValue("IdTable");
             if (ModelState.IsValid)
             {
-               
+               apointment.UserID = id;
+           
+                
                 _context.Add(apointment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

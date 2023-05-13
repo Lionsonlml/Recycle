@@ -7,12 +7,15 @@
 }
 
 
-
 @{
-    Layout = "~/Views/Shared/_Layout_Usuario.cshtml";
+    Layout = "~/Views/Shared/_LayoutCita.cshtml";
 }
 
 
+@{
+int id = (int)SessionManager.GetSessionValue("IdTable");
+ 
+}
 
 <h1>Index</h1>
 
@@ -34,9 +37,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PackageId)
             </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.ProductCategoryID)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.State)
             </th>
@@ -49,6 +52,8 @@
     <tbody>
         @foreach (var item in Model)
         {
+            @if (item.UserID == id)
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Municipality)
@@ -62,9 +67,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PackageId)
                 </td>
-                <td>
+              @*  <td>
                     @Html.DisplayFor(modelItem => item.ProductCategoryID)
-                </td>
+                </td>*@
 
                 <td>
                     @Html.DisplayFor(modelItem => item.State)
@@ -79,7 +84,7 @@
                     <a class="btn btn-outline-dark" asp-action="ConsultPoints" asp-route-id="@item.Id">ConsultPoints</a>
                 </td>
             </tr>
-        }
+        }}
     </tbody>
 </table>
 
