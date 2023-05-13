@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,25 @@ namespace RecycleDevices.Controllers
         }
 
 
+        public string GenerateRandomCode(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public IActionResult GenerateCode()
+        {
+
+            var Model = new ConsultPointViewModel()
+            {
+                 CodeDiscount = GenerateRandomCode(8)
+        };
+           
+            return View(Model);
+        }
+
         public ActionResult CrearOtraEntidad()
         {
             return RedirectToAction("Create", "Packages");
@@ -38,7 +58,7 @@ namespace RecycleDevices.Controllers
             var AsignedApointment = _context.Apointment.Where(p => p.Id == id).SingleOrDefault();
             if (AsignedApointment != null)
             {
-                AsignedApointment.State = "Completa"; // Change State value to 2
+                AsignedApointment.State = "Completa"; 
                 _context.SaveChanges();
             }
 
@@ -53,8 +73,7 @@ namespace RecycleDevices.Controllers
             {
                 return NotFound();
             }
-            // Return the view with the view model
-            return View(apointment);
+               return View(apointment);
         }
         // GET: Apointments
         public async Task<IActionResult> Index()
@@ -81,31 +100,47 @@ namespace RecycleDevices.Controllers
 
             return View(apointment);
         }
-        public async Task<IActionResult> ConsultPointsAsync(int? id)
+        public async Task<IActionResult> ConsultPointsAsync()
         {
+            int id = (int)TempData["Id"];
+            int point = (int)TempData["points"];
 
             if (id == null || _context.Apointment == null)
             {
                 return NotFound();
             }
 
-            var apointment = await _context.Apointment
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (apointment == null)
+            var model = new ConsultPointViewModel();
+            //.FirstOrDefaultAsync(m => m.Id == id);
+
+
+            model.Point = point;
+            if (model == null)
             {
                 return NotFound();
             }
             // Return the view with the view model
-            return View(apointment);
+            return View(model);
         }
 
         // GET: Apointments/Create
         public IActionResult Create()
         {
-            Apointment ap = new Apointment();   
-            int id = (int)TempData["Id"];
-            ap.UserID = id;
-            ViewBag.Categorias = new SelectList(_context.Product, "Id", "Name");
+
+
+            var id = (int)TempData["Id"];
+            var points = (int)TempData["points"];
+
+            Apointment ap = new Apointment();
+
+                ap.UserID = id;
+                ap.Points = points;
+                ViewBag.Categorias = new SelectList(_context.Product, "Id", "Name");
+            
+            if (id == null || _context.Apointment == null)
+            {
+                return View(ap);
+            }
 
             return View(ap);
         }

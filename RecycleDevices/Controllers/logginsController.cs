@@ -44,23 +44,29 @@ namespace RecycleDevices.Controllers
             if (loggin is not null)
             {
                 int id;
+                int points;
                 var us = await _context.Client.SingleOrDefaultAsync(u => u.email == loggin.imail);
                 ///   var rolUs = await _context.rolls.SingleOrDefaultAsync(u => u.Id == us.roll);
                 ///   
-                if (await VerificCredt(loggin.imail, loggin.password)) { 
-                switch (us.roll)
-                {
-                    //vista cliente 
-                    case 1:
-                      
+                if (await VerificCredt(loggin.imail, loggin.password)) {
+                    switch (us.roll)
+                    {
+                        //vista cliente 
+                        case 1:
                             id = us.Id;
-                            TempData["Id"] =id;
-                            return RedirectToAction("Create", "Apointments");
+                            points = (int)us.points;
+                            TempData["Id"] = id;
+                            TempData["points"] = points;
+                            TempData.Keep("Id");
+                            TempData.Keep("points");
+                            return RedirectToAction("ConsultPoints", "Apointments");
                             break;
                     case 2:
 
-                        //vista domiciliario
-                        return View();
+                            id = us.Id;
+                            TempData["Id"] = id;
+                            return RedirectToAction("AsignedApointment", "Apointments");
+                            break; ;
                         break;
 
 
