@@ -22,11 +22,6 @@
     <None Include="Views\Apointments\Index.cshtml" />
     <None Include="Views\Apointments\UpdateState.cshtml" />
     <None Include="Views\Client\RedeemPoints.cshtml" />
-    <None Include="Views\Domiciliarios\Create.cshtml" />
-    <None Include="Views\Domiciliarios\Delete.cshtml" />
-    <None Include="Views\Domiciliarios\Details.cshtml" />
-    <None Include="Views\Domiciliarios\Edit.cshtml" />
-    <None Include="Views\Domiciliarios\Index.cshtml" />
     <None Include="Views\Funcionarios\Create.cshtml" />
     <None Include="Views\Funcionarios\Delete.cshtml" />
     <None Include="Views\Funcionarios\Details.cshtml" />
