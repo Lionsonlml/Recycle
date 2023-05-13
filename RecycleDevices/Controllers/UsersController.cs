@@ -68,9 +68,9 @@ namespace RecycleDevices.Controllers
             {
                 _context.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View("~/Views/Home/Index.cshtml");
 
-            }
+                }
         }
             return View(user);
         }

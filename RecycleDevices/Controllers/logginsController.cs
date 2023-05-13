@@ -139,13 +139,14 @@ namespace RecycleDevices.Controllers
                 }
                 // Codificar el token como una cadena Base64
                 string tok = Convert.ToBase64String(tokenBytes);
+                token.code = tok;
                 token.id_user = us.Id;
                 token.finicio = DateTime.Now;
                 token.ffin = DateTime.Now.AddMinutes(10);
                 to.Recover(token);
-                rec.enviarmail(us.email);
+                rec.enviarmail(us.email,token.code);
                 int userActive = us.Id; 
-                TempData["UserActive"] = userActive;
+             //   TempData["UserActive"] = userActive;
                 return RedirectToAction("PassworRec", "loggins");
                 //return View("~/Views/loggins/PassworRec.cshtml");
             }
@@ -159,7 +160,7 @@ namespace RecycleDevices.Controllers
         [HttpGet]
         public IActionResult PassworRec()
         {
-            string userActive = TempData["UserActive"].ToString();
+      ///      string userActive = TempData["UserActive"].ToString();
 
             return View();
         }
