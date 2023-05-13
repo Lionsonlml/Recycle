@@ -10,33 +10,13 @@
     display: inline-block;
     vertical-align: top; /* Ajusta la alineación vertical si es necesario */
     width: 50%; /* Ajusta el ancho de las cajas */
-    height:75vh !important;
+    height: 75vh !important;
     box-sizing: border-box; /* Incluye el borde y el padding en el ancho de las cajas */
-   /* border: 1px solid black; Agrega un borde para visualizar las cajas */
+    /* border: 1px solid black; */
     padding: 10px; /* Agrega un padding para separar el contenido del borde */
-}
-.div_image {
-    border-right: 3px solid #72C211;
-}
-.div_image img{
-  
-   width:80%;
-   height:70%;
-    
-}
-.image_perfil{
-  width: 40vw;
-  display: flex;
-  justify-content: center;
-  /*border: 1px solid black;*/
-}
-    .image_perfil img {
-        
-        height: 25vh;
-        margin: auto;
-       
-    }
-#name_roll, #add_image, #cc_password, #email_confirm, #cel, #botton_add {
+}  
+
+#name_roll, #add_image, #cc_password, #email_confirm, #cel, #botton_add, h4 {
     width: 40vw !important;
     height: 20%;
    /* border: 1px solid black;*/
@@ -49,16 +29,22 @@
         margin: 5px !important;
         margin-right: 1.4vw !important;
     }
-#add_image{
+.image {
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
-#add_image input {
-        width: 60%;
-        background-color: #24C238;
-        margin-block-end: 3vh;
-        margin: auto;
-    }
+.image img {
+    width: 75%;
+    height: 85%;
+    border-radius: 50%;
+}
+
  #cel input {
         width: 45%;
         margin: 0 auto
@@ -71,4 +57,12 @@
     margin-top: 4vh;
   
     
+}
+.row{
+    padding-top: 5vw;
+
+}
+h4{
+    text-align: center;
+    padding-bottom: 5vw;
 }

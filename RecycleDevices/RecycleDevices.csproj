@@ -65,6 +65,7 @@
     <None Include="Views\Vehiculoes\Index.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\images\image.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
