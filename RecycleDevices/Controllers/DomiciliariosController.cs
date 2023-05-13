@@ -28,7 +28,7 @@ namespace RecycleDevices.Controllers
         }
 
         // GET: Domiciliarios/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null || _context.Domiciliarios == null)
             {
@@ -58,10 +58,19 @@ namespace RecycleDevices.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,IdDom,TypeId,Name,LastName,Email,password,Day,HourInitial,HourEnd,Rol")] Domiciliario domiciliario)
         {
+            User us = new User();
+            Loger log = new Loger();
+            domiciliario.password = us.Encriptar(domiciliario.password);
             if (ModelState.IsValid)
             {
+                domiciliario.roll = 2;
                 _context.Add(domiciliario);
                 await _context.SaveChangesAsync();
+                log.idTable = domiciliario.Id;
+                log.roll = domiciliario.roll;
+                log.email = domiciliario.Email;
+                log.password = domiciliario.password;
+                _context.Add(log);
                 return RedirectToAction(nameof(Index));
             }
             return View(domiciliario);
@@ -88,7 +97,7 @@ namespace RecycleDevices.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,IdDom,TypeId,Name,LastName,Email,password,Day,HourInitial,HourEnd,Rol")] Domiciliario domiciliario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdDom,TypeId,Name,LastName,Email,password,Day,HourInitial,HourEnd,Rol")] Domiciliario domiciliario)
         {
             if (id != domiciliario.Id)
             {
@@ -119,7 +128,7 @@ namespace RecycleDevices.Controllers
         }
 
         // GET: Domiciliarios/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null || _context.Domiciliarios == null)
             {
@@ -155,7 +164,7 @@ namespace RecycleDevices.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DomiciliarioExists(string id)
+        private bool DomiciliarioExists(int id)
         {
           return (_context.Domiciliarios?.Any(e => e.Id == id)).GetValueOrDefault();
         }

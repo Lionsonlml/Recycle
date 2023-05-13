@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecycleDevices.Data;
 
@@ -11,9 +12,11 @@ using RecycleDevices.Data;
 namespace RecycleDevices.Migrations
 {
     [DbContext(typeof(ApointmentContext))]
-    partial class ApointmentContextModelSnapshot : ModelSnapshot
+    [Migration("20230513210431_Migrations")]
+    partial class Migrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

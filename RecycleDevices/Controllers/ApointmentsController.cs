@@ -1,6 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging.Signing;
 using RecycleDevices.Data;
 using RecycleDevices.Models;
 
@@ -97,8 +103,13 @@ namespace RecycleDevices.Controllers
         }
         public async Task<IActionResult> ConsultPointsAsync()
         {
-            int id = 1;
-            //int point = (int)TempData["points"];
+            // int id = (int)TempData["Id"];
+            //  int point = (int)TempData["points"];
+
+            //int? id = HttpContext.Session.GetInt32("Id");
+            int id = (int)SessionManager.GetSessionValue("IdTable");
+            //var us = await _context.Client.SingleOrDefault(u=> u.Id == id); 
+
 
             if (id == null || _context.Apointment == null)
             {
@@ -109,7 +120,7 @@ namespace RecycleDevices.Controllers
             //.FirstOrDefaultAsync(m => m.Id == id);
 
 
-            //model.Point = point;
+          //  model.Point = point;
             if (model == null)
             {
                 return NotFound();
@@ -122,15 +133,14 @@ namespace RecycleDevices.Controllers
         public IActionResult Create()
         {
 
-            var id = 1;
-            var points = 2;
-            //var id = (int)TempData["Id"];
-            //var points = (int)TempData["points"];
 
+            //   var id = (int)TempData["Id"];
+            //   var points = (int)TempData["points"];
+            int id = (int)SessionManager.GetSessionValue("IdTable");
             Apointment ap = new Apointment();
 
                 ap.UserID = id;
-                ap.Points = points;
+             //   ap.Points = points;
                 ViewBag.Categorias = new SelectList(_context.Product, "Id", "Name");
             
             if (id == null || _context.Apointment == null)
@@ -151,10 +161,11 @@ namespace RecycleDevices.Controllers
 
             //
             //var user = await _context.Client.FindAsync(id);
-           
+            int id = (int)SessionManager.GetSessionValue("IdTable");
             if (ModelState.IsValid)
             {
-               
+               apointment.UserID = id;
+                
                 _context.Add(apointment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
