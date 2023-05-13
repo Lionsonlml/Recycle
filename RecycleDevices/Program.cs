@@ -12,7 +12,7 @@ builder.Services.AddControllersWithViews();
 //=======
 //builder.Services.AddDbContext<ApointmentContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 //>>>>>>> master
-
+builder.Services.AddDbContext<ApointmentContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Logcontext")));
 
 var app = builder.Build();
 

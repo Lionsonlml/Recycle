@@ -18,6 +18,7 @@ namespace RecycleDevices.Models
         public DateTime finicio { get; set; }
 
         public DateTime ffin { get; set; }
+        public string? code { get; set; }
      
         public User USUARIO { get; set; }
 
