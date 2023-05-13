@@ -12,7 +12,7 @@ using RecycleDevices.Data;
 namespace RecycleDevices.Migrations
 {
     [DbContext(typeof(ApointmentContext))]
-    [Migration("20230513210431_Migrations")]
+    [Migration("20230513224639_Migrations")]
     partial class Migrations
     {
         /// <inheritdoc />
@@ -84,19 +84,7 @@ namespace RecycleDevices.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Day")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("HourEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("HourInitial")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("IdDom")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -105,8 +93,8 @@ namespace RecycleDevices.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TypeId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("cc")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("password")
                         .HasColumnType("nvarchar(max)");

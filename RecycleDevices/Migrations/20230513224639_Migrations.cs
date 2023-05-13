@@ -60,15 +60,11 @@ namespace RecycleDevices.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdDom = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TypeId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    cc = table.Column<long>(type: "bigint", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Day = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HourInitial = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HourEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
                     roll = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

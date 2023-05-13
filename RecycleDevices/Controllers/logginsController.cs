@@ -60,11 +60,17 @@ namespace RecycleDevices.Controllers
 
 
                     case 3:
-                        // funcionario 
-                        return View();
-                        break;
+                            // funcionario 
+                            return RedirectToAction("Create", "Domiciliarios");
+                            break;
+                     case 4:
+
+                            return RedirectToAction("Create", "Funcionarios");
+                            break;
+
                     default: return View();
                         break;
+
                 }
                 }
                 else {
