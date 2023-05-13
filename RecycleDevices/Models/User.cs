@@ -12,11 +12,11 @@ namespace RecycleDevices.Models
         public int Id { get; set; }
         public string? name { get; set; }
         public string? lastName { get; set; }
-        public int cc {get; set; }
+        public long cc { get; set; }
         public string? email { get; set; }
-        public int roll { get; set; } 
+        public int roll { get; set; }
         public float points { get; set; }
-        public int phoneNumber { get; set; }
+        public long phoneNumber { get; set; }
         public string? password { get; set; }
        
         

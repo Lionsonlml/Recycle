@@ -139,13 +139,14 @@ namespace RecycleDevices.Controllers
                 }
                 // Codificar el token como una cadena Base64
                 string tok = Convert.ToBase64String(tokenBytes);
+                token.code = tok;
                 token.id_user = us.Id;
                 token.finicio = DateTime.Now;
                 token.ffin = DateTime.Now.AddMinutes(10);
                 to.Recover(token);
-                rec.enviarmail(us.email);
+                rec.enviarmail(us.email,token.code);
                 int userActive = us.Id; 
-                TempData["UserActive"] = userActive;
+             //   TempData["UserActive"] = userActive;
                 return RedirectToAction("PassworRec", "loggins");
                 //return View("~/Views/loggins/PassworRec.cshtml");
             }
@@ -156,27 +157,69 @@ namespace RecycleDevices.Controllers
             }
 
         }
-        public async Task<IActionResult> PassworRec(User recover)
+        [HttpGet]
+        public IActionResult PassworRec()
+        {
+      ///      string userActive = TempData["UserActive"].ToString();
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> PassworRec(Recuperar recover)
         {
             Token touk = new Token();
             UsersController user = new UsersController(_context);
             DateTime fechaAct = DateTime.Now;
-            int userActive = (int)TempData["UserActive"];
-            var tok = await _context.Tokens.SingleOrDefaultAsync(u => u.id_user == userActive);
-            if (tok == null) { return View("~/Views/loggins/ExLimit.cshtml"); }
-            else
+            // string userActive = TempData["UserActive"].ToString();
+            var tok = await _context.Tokens.SingleOrDefaultAsync(u => u.code == recover.code);
+
+            if (tok is not null)
             {
-                if (fechaAct > tok.ffin)
+                if (tok.ffin >= fechaAct)
                 {
-                    return View("~/Views/loggins/ExLimit.cshtml");
+                    var us = await _context.Client.SingleOrDefaultAsync(u => u.Id == tok.id_user);
+                    recover.newPassword = User.Encriptar(recover.newPassword);
+                    if (recover.newPassword != us.password)
+                    {
+                        us.password = recover.newPassword;
+                        _context.Client.Update(us);
+                        await _context.SaveChangesAsync();
+                        return View("~/Views/Home/Index.cshtml");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Las contraseñas no pueden ser Iguales");
+                        return View(recover);
+                    }
                 }
                 else
                 {
-                    return View("~/Views/loggins/Login.cshtml");
+                    ModelState.AddModelError(string.Empty, "La fecha de recuperacion de contraseña ya expiró");
+                    return View(recover);
                 }
+
+
             }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "El codigo es invalido");
+                return View(recover);
+            }
+
+            //if (tok == null) { return View("~/Views/Hokme/Index.cshtml"); }
+            //else
+            //{
+            //    if (fechaAct > tok.ffin)
+            //    {
+            //        return View("~/Views/loggins/ExLimit.cshtml");
+            //    }
+            //    else
+            //    {
+            //        return View("~/Views/loggins/Login.cshtml");
+            //    }
+            //}
         }
-        
+
     }
 }
    

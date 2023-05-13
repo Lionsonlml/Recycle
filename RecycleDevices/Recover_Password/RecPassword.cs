@@ -36,7 +36,7 @@ public class RecPassword
     //    return output.ToString();
     //}
 
-    public void enviarmail(string correodestino)
+    public void enviarmail(string correodestino,string code)
     {
         //mail
         string correol = "<body>"
@@ -53,8 +53,8 @@ public class RecPassword
 + "</tr>"
 + "<tr>"
 + "<td class='esd-block-text es-p15b es-p30r es-p30l' bgcolor='transparent' align='center'>"
-+ "<h3 style='line-height: 150%;'><em>Usted a solicitado un recuperacion de contraseña, utilice este codigo para recuperar su contraseña ahoramismo.\n" +
-        "Cuenta con diez (10) minutos para hacer valida la recuperacion.\n" + "su codigo de acceso es \n" + " <a href='http://localhost:7156/loggins/PassworRec.cshtml?tk='>" + "RECUPERAR" + "</a></em></h3>"
++ "<h3 style='line-height: 150%;'><em>Usted a solicitado un recuperacion de contraseña, utilice este codigo para recuperar su contraseña ahoramismo.\n" + code + 
+       "</a></em></h3>"
 + "</td>"
 + "</tr>"
 + "</tr>"
