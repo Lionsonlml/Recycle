@@ -10,9 +10,8 @@ builder.Services.AddControllersWithViews();
 //<<<<<<< Camila
 //builder.Services.AddDbContext<ApointmentContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionProyect")));
 //=======
-//builder.Services.AddDbContext<ApointmentContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApointmentContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 //>>>>>>> master
-builder.Services.AddDbContext<ApointmentContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Logcontext")));
 
 var app = builder.Build();
 
