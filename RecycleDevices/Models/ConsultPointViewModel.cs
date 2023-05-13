@@ -2,6 +2,7 @@
 {
     public class ConsultPointViewModel
     {
-        public ConsultPointViewModel() { }
+        public string CodeDiscount { get; set; }
+        public int Point { get; set; }
     }
 }
