@@ -12,13 +12,8 @@ using RecycleDevices.Data;
 namespace RecycleDevices.Migrations
 {
     [DbContext(typeof(ApointmentContext))]
-<<<<<<<< HEAD:RecycleDevices/Migrations/20230513105808_mig1.Designer.cs
-    [Migration("20230513105808_mig1")]
-    partial class mig1
-========
-    [Migration("20230513111639_Migrations")]
-    partial class Migrations
->>>>>>>> fec4d94c8524041e3732bbb3bc435a7ed9dbde11:RecycleDevices/Migrations/20230513111639_Migrations.Designer.cs
+    [Migration("20230513110649_mig2")]
+    partial class mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,9 +221,6 @@ namespace RecycleDevices.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_token"));
 
-                    b.Property<string>("code")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("ffin")
                         .HasColumnType("datetime2");
 
@@ -253,8 +245,8 @@ namespace RecycleDevices.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<long>("cc")
-                        .HasColumnType("bigint");
+                    b.Property<int>("cc")
+                        .HasColumnType("int");
 
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
@@ -268,8 +260,8 @@ namespace RecycleDevices.Migrations
                     b.Property<string>("password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("phoneNumber")
-                        .HasColumnType("bigint");
+                    b.Property<int>("phoneNumber")
+                        .HasColumnType("int");
 
                     b.Property<float>("points")
                         .HasColumnType("real");
