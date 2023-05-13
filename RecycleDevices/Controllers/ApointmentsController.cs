@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RecycleDevices.Data;
@@ -102,8 +97,8 @@ namespace RecycleDevices.Controllers
         }
         public async Task<IActionResult> ConsultPointsAsync()
         {
-            int id = (int)TempData["Id"];
-            int point = (int)TempData["points"];
+            int id = 1;
+            //int point = (int)TempData["points"];
 
             if (id == null || _context.Apointment == null)
             {
@@ -114,7 +109,7 @@ namespace RecycleDevices.Controllers
             //.FirstOrDefaultAsync(m => m.Id == id);
 
 
-            model.Point = point;
+            //model.Point = point;
             if (model == null)
             {
                 return NotFound();
@@ -127,9 +122,10 @@ namespace RecycleDevices.Controllers
         public IActionResult Create()
         {
 
-
-            var id = (int)TempData["Id"];
-            var points = (int)TempData["points"];
+            var id = 1;
+            var points = 2;
+            //var id = (int)TempData["Id"];
+            //var points = (int)TempData["points"];
 
             Apointment ap = new Apointment();
 
