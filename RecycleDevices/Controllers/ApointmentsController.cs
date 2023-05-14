@@ -218,7 +218,7 @@ namespace RecycleDevices.Controllers
             if (ModelState.IsValid)
             {
                apointment.UserID = id;
-           
+                apointment.State = "Preparado";
                 
                 _context.Add(apointment);
                 await _context.SaveChangesAsync();

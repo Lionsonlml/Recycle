@@ -45,7 +45,6 @@
     <None Include="Views\Shared\CRUDFun.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
-    <None Include="Views\Shared\_LayoutUsuario.cshtml" />
     <None Include="Views\Shared\_Layout_Index.cshtml" />
     <None Include="Views\Shared\_Layout_Usuario.cshtml" />
     <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
