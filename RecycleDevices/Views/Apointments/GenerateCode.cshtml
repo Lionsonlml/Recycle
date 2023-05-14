@@ -5,14 +5,13 @@
     ViewData["Title"] = "GenerateCode";
 }
 
-
 @{
-    Layout = "~/Views/Shared/_LayoutCita.cshtml";
+    Layout = "~/Views/Shared/_Layout_Usuario.cshtml";
 }
 
+<h1>Saldo en Puntos</h1>
 
-
-<h1>saldo en puntos</h1>
+<br>
 
 <dt class="col-sm-2">
     @Html.DisplayNameFor(model => model.Point)
@@ -21,10 +20,28 @@
 <dd class="col-sm-10">
     @Html.DisplayFor(model => model.Point)
 </dd>
+<hr>
+
+
 
 <form method="POST" asp-action="GenerateCode">
-    <input type="submit" value="Generate Code" />
+
+
+
+    <dt class="col-sm-2">
+        @Html.DisplayText("Puntos a redimir: ")
+    </dt>
+    <div class="col-sm-10>
+        <label asp-for="PointRedeem" class="control-label"></label>
+        <input asp-for="PointRedeem" class="form-control" />
+        <span asp-validation-for="PointRedeem" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Enviar" />
+
 </form>
+
+
+<hr>
 <h1>Generated Code:</h1>
 
 <h1>@Model.CodeDiscount</h1>

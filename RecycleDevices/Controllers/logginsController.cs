@@ -1,20 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
-
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Routing;
-using System.Security.Claims;
-
-using Microsoft.AspNetCore.Http;
-using System.Diagnostics;
-using System.Web;
 using RecycleDevices.Data;
 using RecycleDevices.Models;
 using Login.Recover_Password;
@@ -25,11 +10,13 @@ namespace RecycleDevices.Controllers
     {
         private readonly ApointmentContext _context;
         public User User = new User();
-       
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public logginsController(ApointmentContext context)
         {
             _context = context;
+           
         }
+    
 
         public IActionResult Login()
         {
@@ -45,37 +32,45 @@ namespace RecycleDevices.Controllers
             {
                 int id;
                 int points;
-                var us = await _context.Client.SingleOrDefaultAsync(u => u.email == loggin.imail);
+                SessionManager.RemoveSessionValue("IdTable");
+
+                SessionManager.ClearSession();
+
+
+                var us = await _context.logers.SingleOrDefaultAsync(u => u.email == loggin.imail);
                 ///   var rolUs = await _context.rolls.SingleOrDefaultAsync(u => u.Id == us.roll);
                 ///   
                 if (await VerificCredt(loggin.imail, loggin.password)) {
+                    SessionManager.SetSessionValue("IdTable", us.idTable);
                     switch (us.roll)
                     {
                         //vista cliente 
                         case 1:
-                            id = us.Id;
-                            points = (int)us.points;
-                            TempData["Id"] = id;
-                            TempData["points"] = points;
-                            TempData.Keep("Id");
-                            TempData.Keep("points");
-                            return RedirectToAction("ConsultPoints", "Apointments");
+                           
+                            //     HttpContext.Session.SetInt32("Id", us.idTable);
+                            return RedirectToAction("Create", "Apointments");
                             break;
                     case 2:
 
-                            id = us.Id;
-                            TempData["Id"] = id;
+                            //domiciliario
+                          
                             return RedirectToAction("AsignedApointment", "Apointments");
                             break; ;
                         break;
 
 
                     case 3:
-                        //vista Gerente
-                        return View();
-                        break;
+                            // funcionario 
+                            return RedirectToAction("Create", "Domiciliarios");
+                            break;
+                     case 4:
+
+                            return RedirectToAction("Create", "Funcionarios");
+                            break;
+
                     default: return View();
                         break;
+
                 }
                 }
                 else {
@@ -219,8 +214,34 @@ namespace RecycleDevices.Controllers
             //    }
             //}
         }
+       
 
     }
-}
-   
 
+
+}
+
+public static class SessionManager
+{
+    private static Dictionary<string, object> _sessionData = new Dictionary<string, object>();
+
+    public static void SetSessionValue(string key, object value)
+    {
+        _sessionData[key] = value;
+    }
+
+    public static object GetSessionValue(string key)
+    {
+        object value;
+        _sessionData.TryGetValue(key, out value);
+        return value;
+    }
+    public static void RemoveSessionValue(string key)
+    {
+        _sessionData.Remove(key);
+    }
+    public static void ClearSession()
+    {
+        _sessionData = new Dictionary<string, object>();
+    }
+}

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 @{
-    Layout = "~/Views/Shared/_LayoutCita.cshtml";
+    Layout = "~/Views/Shared/_Layout_Usuario.cshtml";
 }
 
 
@@ -78,15 +78,21 @@
                 <input asp-for="State" class="form-control" />
                 <span asp-validation-for="State" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Points" class="control-label"></label>
                 <input asp-for="Points" class="form-control" />
                 <span asp-validation-for="Points" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </div>*@
+        @*    <div class="form-group">
                 <label asp-for="ProductCategoryID" class="control-label">Category</label>
-                <select asp-for="ProductCategoryID" class="form-control" asp-items="ViewBag.Categorias"></select>
+                <select asp-for="ProductCategoryID"  class="form-control" asp-items="ViewBag.Categorias"></select>
+                <span asp-validation-for="Points" class="text-danger"></span>
                 <span asp-validation-for="ProductCategoryID" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Points" class="control-label">Category</label>
+                <select asp-for="Points" class="form-control" asp-items="ViewBag.Categorias"></select>
+                <span asp-validation-for="Points" class="text-danger"></span>
             </div>
             <br>
 

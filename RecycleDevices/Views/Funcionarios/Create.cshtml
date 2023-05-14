@@ -14,9 +14,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdFun" class="control-label"></label>
-                <input asp-for="IdFun" class="form-control" />
-                <span asp-validation-for="IdFun" class="text-danger"></span>
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TypeId" class="control-label">Type</label>
@@ -74,14 +74,14 @@
                 <span asp-validation-for="Cargo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Crear" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Menú principal</a>
 </div>
 
 @section Scripts {

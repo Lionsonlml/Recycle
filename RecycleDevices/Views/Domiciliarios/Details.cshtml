@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/CRUDDom.cshtml";
 }
 
 <h1>Details</h1>
@@ -11,65 +10,41 @@
     <h4>Domiciliario</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdDom)
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cc)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IdDom)
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cc)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TypeId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TypeId)
-        </dd>
-        <dt class="col-sm-2">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class="col-sm-10">
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class="col-sm-2">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.LastName)
         </dt>
-        <dd class="col-sm-10">
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
-        <dt class="col-sm-2">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-        <dd class="col-sm-10">
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Email)
         </dd>
-        <dt class="col-sm-2">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.password)
         </dt>
-        <dd class="col-sm-10">
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.password)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Day)
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.roll)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Day)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HourInitial)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HourInitial)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HourEnd)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HourEnd)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rol)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rol)
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.roll)
         </dd>
     </dl>
 </div>

@@ -8,11 +8,63 @@
 
   <ItemGroup>
     <Folder Include="BusinnesLogic\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Apointments\AsignedApointment.cshtml" />
+    <None Include="Views\Apointments\ConsultPoints.cshtml" />
+    <None Include="Views\Apointments\Create.cshtml" />
+    <None Include="Views\Apointments\Delete.cshtml" />
+    <None Include="Views\Apointments\Details.cshtml" />
+    <None Include="Views\Apointments\Edit.cshtml" />
+    <None Include="Views\Apointments\GenerateCode.cshtml" />
+    <None Include="Views\Apointments\Index.cshtml" />
+    <None Include="Views\Apointments\UpdateState.cshtml" />
+    <None Include="Views\Client\RedeemPoints.cshtml" />
+    <None Include="Views\Funcionarios\Create.cshtml" />
+    <None Include="Views\Funcionarios\Delete.cshtml" />
+    <None Include="Views\Funcionarios\Details.cshtml" />
+    <None Include="Views\Funcionarios\Edit.cshtml" />
+    <None Include="Views\Funcionarios\Index.cshtml" />
+    <None Include="Views\Home\AboutUs.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Home\TipsPrevention.cshtml" />
+    <None Include="Views\loggins\ExLimit.cshtml" />
+    <None Include="Views\loggins\Inter_Email.cshtml" />
+    <None Include="Views\loggins\Login.cshtml" />
+    <None Include="Views\loggins\PassworRec.cshtml" />
+    <None Include="Views\loggins\Recover.cshtml" />
+    <None Include="Views\Products\Create.cshtml" />
+    <None Include="Views\Products\Delete.cshtml" />
+    <None Include="Views\Products\Details.cshtml" />
+    <None Include="Views\Products\Edit.cshtml" />
+    <None Include="Views\Products\Index.cshtml" />
+    <None Include="Views\Shared\CRUDDom.cshtml" />
+    <None Include="Views\Shared\CRUDFun.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_Layout_Index.cshtml" />
+    <None Include="Views\Shared\_Layout_Usuario.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\Tokens\Create.cshtml" />
+    <None Include="Views\Tokens\Delete.cshtml" />
+    <None Include="Views\Tokens\Details.cshtml" />
+    <None Include="Views\Tokens\Edit.cshtml" />
+    <None Include="Views\Tokens\Index.cshtml" />
+    <None Include="Views\Users\Create.cshtml" />
+    <None Include="Views\Users\Delete.cshtml" />
+    <None Include="Views\Users\Details.cshtml" />
+    <None Include="Views\Users\Edit.cshtml" />
+    <None Include="Views\Users\Index.cshtml" />
+    <None Include="Views\Vehiculoes\Create.cshtml" />
+    <None Include="Views\Vehiculoes\Delete.cshtml" />
+    <None Include="Views\Vehiculoes\Details.cshtml" />
+    <None Include="Views\Vehiculoes\Edit.cshtml" />
+    <None Include="Views\Vehiculoes\Index.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

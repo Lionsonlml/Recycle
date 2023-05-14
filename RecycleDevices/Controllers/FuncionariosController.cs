@@ -28,7 +28,7 @@ namespace RecycleDevices.Controllers
         }
 
         // GET: Funcionarios/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null || _context.Funcionarios == null)
             {
@@ -36,7 +36,7 @@ namespace RecycleDevices.Controllers
             }
 
             var funcionario = await _context.Funcionarios
-                .FirstOrDefaultAsync(m => m.IdFun == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (funcionario == null)
             {
                 return NotFound();
@@ -56,11 +56,23 @@ namespace RecycleDevices.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdFun,Name,TypeId,LastName,email,password,NivelEstudio,Cargo")] Funcionario funcionario)
+        public async Task<IActionResult> Create([Bind("Id,Name,TypeId,LastName,email,password,NivelEstudio,Cargo")] Funcionario funcionario)
         {
+            User us = new User();
+            Loger log = new Loger();
+            funcionario.password = us.Encriptar(funcionario.password);
             if (ModelState.IsValid)
             {
+                funcionario.roll = 3;
+              
                 _context.Add(funcionario);
+               
+                await _context.SaveChangesAsync();
+                log.idTable = funcionario.Id;
+                log.email = funcionario.email;
+                log.password = funcionario.password;
+                log.roll = funcionario.roll;
+                _context.Add(log);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -88,9 +100,9 @@ namespace RecycleDevices.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("IdFun,Name,TypeId,LastName,email,password,NivelEstudio,Cargo")] Funcionario funcionario)
+        public async Task<IActionResult> Edit(int id, [Bind("IdFun,Name,TypeId,LastName,email,password,NivelEstudio,Cargo")] Funcionario funcionario)
         {
-            if (id != funcionario.IdFun)
+            if (id != funcionario.Id)
             {
                 return NotFound();
             }
@@ -104,7 +116,8 @@ namespace RecycleDevices.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FuncionarioExists(funcionario.IdFun))
+                    if ((funcionario.Id) != 0)
+                        
                     {
                         return NotFound();
                     }
@@ -119,7 +132,7 @@ namespace RecycleDevices.Controllers
         }
 
         // GET: Funcionarios/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null || _context.Funcionarios == null)
             {
@@ -127,7 +140,7 @@ namespace RecycleDevices.Controllers
             }
 
             var funcionario = await _context.Funcionarios
-                .FirstOrDefaultAsync(m => m.IdFun == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (funcionario == null)
             {
                 return NotFound();
@@ -155,9 +168,9 @@ namespace RecycleDevices.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FuncionarioExists(string id)
+        private bool FuncionarioExists(int id)
         {
-          return (_context.Funcionarios?.Any(e => e.IdFun == id)).GetValueOrDefault();
+          return (_context.Funcionarios?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
